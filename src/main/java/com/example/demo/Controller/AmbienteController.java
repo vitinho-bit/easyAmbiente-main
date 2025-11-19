@@ -9,7 +9,7 @@ import com.example.demo.Service.AmbienteService;
 @RestController
 @RequestMapping("/ambientes")
 public class AmbienteController extends BaseController<AmbienteDTO> {
-
+ 
     protected AmbienteController(AmbienteService service){
         super(service);
     }

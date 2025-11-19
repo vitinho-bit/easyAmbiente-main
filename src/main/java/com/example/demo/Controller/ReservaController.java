@@ -1,7 +1,9 @@
 package com.example.demo.Controller;
 
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,7 @@ import com.example.demo.Service.ReservaService;
 
 @RestController
 @RequestMapping("/reservas")
+@CrossOrigin(origins = "*")
 public class ReservaController extends BaseController<ReservaDTO> {
 
 
@@ -45,6 +48,21 @@ public class ReservaController extends BaseController<ReservaDTO> {
 
     }
 
+     
+    // 🔹 Calendário semanal de reservas — integra com o método getCalendarioSemanal() do service
+    @GetMapping("/calendario")
+    public List<ReservaDTO> calendario() {
+        return service.calendario();
+    }
+
+
+    @GetMapping("/relatorio-ambientes/{mes}/{ano}")
+        public Map<String, Long> getRelatorioUtilizacaoAmbientes(
+        @PathVariable int mes,
+        @PathVariable int ano) {
+    return service.getRelatorioUtilizacaoAmbientes(mes, ano);
+}
+    
     
 
 }

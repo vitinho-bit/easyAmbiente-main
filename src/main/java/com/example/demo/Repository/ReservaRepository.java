@@ -32,15 +32,13 @@ public interface ReservaRepository extends BaseRepository<Reserva, Long>{
             )
        
     """)
-
-
     List<Reserva> findByDatas(LocalDateTime dataInicio, LocalDateTime dataFim);
    
     @Query("""
         SELECT r
         FROM Reserva r
         WHERE r.ativo = true
-        AND r.ambiente.id = ambienteId
+        AND r.ambiente.id = :ambienteId
     """)
     List<Reserva> findByAmbiente(Long ambienteId);
 
@@ -53,6 +51,14 @@ public interface ReservaRepository extends BaseRepository<Reserva, Long>{
     """)
     List<Reserva> findByNome(String nome);
 
-
+    
+    @Query("""
+    SELECT r.ambiente.nome, COUNT(r)
+    FROM Reserva r
+    WHERE MONTH(r.dataInicio) = :mes AND YEAR(r.dataInicio) = :ano
+    GROUP BY r.ambiente.nome
+    ORDER BY COUNT(r) DESC
+""")
+   List<Object[]> findUtilizacaoAmbientesPorMes(int mes, int ano);
 
 }
