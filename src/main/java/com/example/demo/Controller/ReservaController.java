@@ -48,21 +48,6 @@ public class ReservaController extends BaseController<ReservaDTO> {
 
     }
 
-     
-    // 🔹 Calendário semanal de reservas — integra com o método getCalendarioSemanal() do service
-    @GetMapping("/calendario")
-    public List<ReservaDTO> calendario() {
-        return service.calendario();
-    }
-
-
-    @GetMapping("/relatorio-ambientes/{mes}/{ano}")
-        public Map<String, Long> getRelatorioUtilizacaoAmbientes(
-        @PathVariable int mes,
-        @PathVariable int ano) {
-    return service.getRelatorioUtilizacaoAmbientes(mes, ano);
-}
-    
-    
+  
 
 }

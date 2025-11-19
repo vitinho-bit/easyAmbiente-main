@@ -27,4 +27,7 @@ public class AmbienteDTO {
 
     @NotNull(message = "O campo capacidade deve ser preenchido")
     private int capacidade;
+
+    @NotBlank(message = "O campo tipo deve ser preenchido")
+    private String tipo;
 }

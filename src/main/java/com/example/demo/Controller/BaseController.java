@@ -45,4 +45,6 @@ public abstract class BaseController<D> {
     public List<D> list(){
         return service.list();
     }
+
+    
 }
